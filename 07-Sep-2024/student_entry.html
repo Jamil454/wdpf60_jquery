@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <fieldset style="width: fit-content;">
+  <legend>Student Entry Form</legend>
+    <form action="" id="studentform">
+
+       Name: <input type="text" name="name"  placeholder="Enter name"> <br>
+        Gender: <br>
+        Male<input type="radio" name="gender" value="Male">
+        Female<input type="radio" name="gender"  value="Female"> <br>
+        Date of Birth: <br><input type="date"  name="dob"> <br>
+       Email: <br> <input type="text" name="email"  placeholder="Enter email"> <br>
+        Phone: <br><input type="text" name="phone"  placeholder="Enter phone"> <br>
+        Address: <br> <textarea name="address"  ></textarea> <br>
+        <input type="button" name="submit" id="submit" value="SUBMIT">
+    </form>
+</fieldset>
+
+<div></div>
+
+<script>
+
+    $(document).ready(function () {
+        // get_students();
+        $("div").load("get_data.php");
+        $("#submit").click(function(){
+            let formdata = $("#studentform").serialize();
+            console.log(formdata);
+            $.post("insert.php" , {mydata:formdata}, function(data, status){
+                alert(data);
+            });
+            // get_students();
+            $("div").load("get_data.php");
+
+        });
+        // function get_students(){
+        //   $.get("get_data.php" ,function(data, status){
+        //     $("div").html(data);
+        //   });
+        // }
+        });
+    
+    
+</script>
+</body>
+</html>
